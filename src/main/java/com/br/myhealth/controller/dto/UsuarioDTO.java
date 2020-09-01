@@ -3,10 +3,12 @@ package com.br.myhealth.controller.dto;
 
 import com.br.myhealth.model.Usuario;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UsuarioDTO {
 
 
@@ -19,6 +21,4 @@ public class UsuarioDTO {
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
     }
-
-
 }

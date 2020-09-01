@@ -2,7 +2,9 @@ package com.br.myhealth.controller;
 
 
 import com.br.myhealth.controller.dto.TokenDto;
+import com.br.myhealth.controller.dto.UsuarioDTO;
 import com.br.myhealth.controller.form.LoginForm;
+import com.br.myhealth.model.Usuario;
 import com.br.myhealth.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +31,15 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity<TokenDto> autenticar(@RequestBody LoginForm form) {
-        System.out.println("chegou ");
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
-        System.out.println(dadosLogin);
         try {
             Authentication authentication = authManager.authenticate(dadosLogin);
-            System.out.println("aqui" + authentication);
             String token = tokenService.gerarToken(authentication);
             return ResponseEntity.ok(new TokenDto(token, "Bearer"));
         } catch (AuthenticationException e) {
             return ResponseEntity.badRequest().build();
         }
     }
+
 
 }
